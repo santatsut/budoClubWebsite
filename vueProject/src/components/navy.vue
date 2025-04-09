@@ -25,7 +25,7 @@ const logOut = () => {
     <div class="mainNav">
       <div class="leftSide">
         <RouterLink to="/shop">
-          <img src="../../images/shoppingBagIcon.svg" alt="shop" id="shop">
+          <img src="../../public/images/shoppingBagIcon.svg" alt="shop" id="shop">
         </RouterLink>
       </div>
       <div id="name">

@@ -75,14 +75,14 @@ const handlePayment = () => {
         id="cardButton"
         :class="{ activeButton: !swishPay }"
       >
-        <img src="../../images/debit-card-icon.svg" alt="card" />
+        <img src="../../public/images/debit-card-icon.svg" alt="card" />
       </button>
       <button
         @click="swishPayment"
         id="swishButton"
         :class="{ activeButton: swishPay }"
       >
-        <img src="../../images/swishCut.png" alt="swish" />
+        <img src="../../public/images/swishCut.png" alt="swish" />
       </button>
     </div>
     <h2>Medlemskap: {{ group }}</h2>

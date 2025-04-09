@@ -11,31 +11,31 @@ import { inject } from 'vue';
         <div id="shop">
             <div class="shopCards">
                 <div class="card">
-                    <img src="../../images/whiteBelt.svg" alt="whiteBelt" id="whiteBelt">
+                    <img src="../../public/images/whiteBelt.svg" alt="whiteBelt" id="whiteBelt">
                     <h2>White Belt</h2>
                     <p>pris: 100kr</p>
                     <button>Add to Cart</button>
                 </div>
                 <div class="card">
-                    <img src="../../images/whiteBelt.svg" alt="whiteBelt" id="whiteBelt">
+                    <img src="../../public/images/whiteBelt.svg" alt="whiteBelt" id="whiteBelt">
                     <h2>White Belt</h2>
                     <p>pris: 100kr</p>
                     <button>Add to Cart</button>
                 </div>  
                 <div class="card">
-                    <img src="../../images/whiteBelt.svg" alt="whiteBelt" id="whiteBelt">
+                    <img src="../../public/images/whiteBelt.svg" alt="whiteBelt" id="whiteBelt">
                     <h2>White Belt</h2>
                     <p>pris: 100kr</p>
                     <button>Add to Cart</button>
                 </div>  
                 <div class="card">
-                    <img src="../../images/whiteBelt.svg" alt="whiteBelt" id="whiteBelt">
+                    <img src="../../public/images/whiteBelt.svg" alt="whiteBelt" id="whiteBelt">
                     <h2>White Belt</h2>
                     <p>pris: 100kr</p>
                     <button>Add to Cart</button>
                 </div>  
                 <div class="card">
-                    <img src="../../images/whiteBelt.svg" alt="whiteBelt" id="whiteBelt">
+                    <img src="../../public/images/whiteBelt.svg" alt="whiteBelt" id="whiteBelt">
                     <h2>White Belt</h2>
                     <p>pris: 100kr</p>
                     <button>Add to Cart</button>
