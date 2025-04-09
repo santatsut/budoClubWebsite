@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@splidejs/splide": "^4.1.4",
+    "bcrypt": "^5.1.1",
+    "ncrypt-js": "^2.1.2",
+    "swiper": "^11.2.6",
+    "vueperslides": "^3.6.0"
+  }
+}
