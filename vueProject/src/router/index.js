@@ -4,7 +4,9 @@ import aboutView from '../views/AboutView.vue'
 import medlemView from '../views/MedlemView.vue'
 import pricesView from '../views/PricesView.vue'
 import paymentView from '../views/PaymentView.vue'
-import shopView from '../views/ShopView.vue'
+import shopView from '../views/shopView.vue'
+import profileView from '@/views/profileView.vue'
+
 
 
 const router = createRouter({
@@ -48,6 +50,11 @@ const router = createRouter({
       name: 'shop',
       component: shopView,
     },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: profileView,
+    }
   ],
 })
 

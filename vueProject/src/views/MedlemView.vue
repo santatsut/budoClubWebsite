@@ -24,6 +24,7 @@ const handleSubmit = async () => {
         if (success) { 
             loggedIn.value = true;
             localStorage.setItem('loggedIn', 'true'); 
+            localStorage.setItem('gmail', gmail.value);
             errorMsg.value = '';
             window.location.href = "/";  // Redirect to home page
         } else {
@@ -57,19 +58,39 @@ const checkLogin = async () => {
     }
 };
 
+
+function containsUppercase(str) {
+  return /[A-Z]/.test(str);
+}
+
 const signUp = () => {
     signingUp.value = true;
-    if (!gmail.value || !password.value || !passwordRe.value) {
+    if ( !firstName || !lastName || !number || !gmail.value || !password.value || !passwordRe.value) {
         errorMsg.value = 'Alla fält måste fyllas i';
         return;
     }
         
-    if (password.value !== passwordRe.value) {
+    else if (password.value !== passwordRe.value) {
         errorMsg.value = 'Lösenorden matchar inte';
         return;
     }
+
+    else if (password.value.length <= 7 || containsUppercase(password.value) === false) {
+        errorMsg.value = 'Lösenordet måste vara minst 7 tecken långt och innehålla en stor bokstav';
+        return;
+    }
+
+    else if (gmail.value.includes('@gmail.com') === false) {
+        errorMsg.value = 'Gmailen måste innehålla ett @gmail.com';
+        return;
+    }
+
+
     
     const userData = {
+        firstName: firstName.value,
+        lastName: lastName.value,
+        number: number.value,
         gmail: gmail.value,
         password: password.value,
     };
@@ -79,10 +100,12 @@ const signUp = () => {
         console.log("user added: ", response.data);
         loggedIn.value = true;
         localStorage.setItem('loggedIn', 'true');
-        window.location.href = "/prices";
+        localStorage.setItem('gmail', gmail.value);
+        window.location.href = "/budoklubb/prices";
       })
       .catch((error) => {
-        console.error("Error adding userrrr", error);
+        console.error("Error adding userrrr, user might already exist", error);
+        errorMsg.value = 'Denna gmail är redan registrerad';
         console.log("Failed to add userr");
       });
   };
@@ -93,8 +116,22 @@ const signUp = () => {
   <div class="Inloggning">
     <h1>Logga in</h1>
     <form @submit.prevent="handleSubmit">
+        <p v-if="errorMsg" id="errorMsg">{{ errorMsg }}</p>
+        <div v-if="signingUp" class="formSection" id="nameSection">
+            <div id="firstNameSection">
+                <label for="firstName">Förnamn: </label>
+                <input type="text" v-model="firstName" placeholder="förnamn" id="firstName"/>
+            </div>
+            <div id="lastNameSection">
+                <label for="lastName">Efternamn: </label>    
+                <input type="text" v-model="lastName" placeholder="efternamn" id="lastName"/>
+            </div>
+        </div>
+        <div v-if="signingUp" class="formSection">
+            <label for="number">Nummer: </label>
+            <input type="text" v-model="number" placeholder="123-123-1234" id="number" />
+        </div>
         <div class="formSection">
-            <p v-if="errorMsg">{{ errorMsg }}</p>
             <label for="gmail">gmail: </label>
             <input type="text" v-model="gmail" placeholder="gmail" id="gmail" />
         </div>
@@ -108,7 +145,7 @@ const signUp = () => {
             <label for="password">Password: </label>
             <input type="password" v-model="passwordRe" placeholder="password" id="passwordRe"/>
         </div>
-        <div>
+        <div v-if="!signingUp">
             <a href="#">Glömt lösenord?</a>
         </div>
 
@@ -122,7 +159,7 @@ const signUp = () => {
 <style>
  .Inloggning {
     position: relative;
-    width: 300px;
+    width: 25%;
     margin: auto;
     margin-top: 150px;
     padding: 20px;
@@ -159,10 +196,25 @@ const signUp = () => {
     flex-direction: column;
 
  }
- .formSection p {
+#errorMsg {
      color: red;
      text-align: center;
  
+ }
+
+ #nameSection {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+ }
+
+ #firstNameSection, #lastNameSection {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 50%;
  }
 
 #line {

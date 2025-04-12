@@ -24,6 +24,9 @@ const logOut = () => {
   <nav>
     <div class="mainNav">
       <div class="leftSide">
+        <RouterLink to="/profile">
+          <img src="../../public/images/userIcon.svg" alt="userProfile" id="user">
+        </RouterLink>
         <RouterLink to="/shop">
           <img src="../../public/images/shoppingBagIcon.svg" alt="shop" id="shop">
         </RouterLink>
@@ -82,7 +85,7 @@ nav h1 {
   display: flex;
   position: relative;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   gap: 10px;
   align-items: center;
   margin: 10px;
