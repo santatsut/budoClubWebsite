@@ -90,7 +90,7 @@ const signUp = () => {
     const userData = {
         firstName: firstName.value,
         lastName: lastName.value,
-        number: number.value,
+        number: parseInt(number.value),
         gmail: gmail.value,
         password: password.value,
     };

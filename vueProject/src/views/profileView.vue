@@ -15,16 +15,22 @@ const isMedlem = ref(false);
         <h1>Profile</h1>
         <div class="profileCard">
             <div id="user">
-                <img src="../../public/images/userIcon.svg" alt="userProfile" id="userIcon">
+                <img src="../../public/images/person.svg" alt="userProfile" id="userIcon">
             </div>
             <div id="userInfo">
-                <p>Förnamn: asdf</p>
-                <p>Efternamn: sasdf</p>
-                <p>Mobil: 123-123-1234</p>
-                <p>Gmail: {{ gmail }}</p>
-                <p>Lösenord: *******</p>
-                <button @click="editProfile">Edit Profile</button>
-                <button @click="deleteProfile">Delete Profile</button>
+                <div class="userSection">
+                    <p>Förnamn: asdf</p>
+                    <p>Efternamn: sasdf</p>
+                </div>
+                <div class="userSection">
+                    <p>Mobil: 123-123-1234</p>
+                    <p>Gmail: {{ gmail }}</p>
+                    <p>Lösenord: *******</p>
+                </div>
+                <div id="buttons">
+                    <button @click="editProfile">Edit Profile</button>
+                    <button @click="deleteProfile">Delete Profile</button>
+                </div>
             </div>
         </div>
         <div class="profileCard" id="bottomBox">
@@ -64,31 +70,57 @@ const isMedlem = ref(false);
     margin: 25px;
 }
 
+#userInfo {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    flex: 0.8;
+    height: 50vh;
+    width: 60%;
+}
+
+.userSection {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+#userInfo p {
+    flex:2;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#buttons {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
 #user {
     display: flex;
     flex-direction: column;
     position: relative;
-    flex:1;
     justify-items: center;
     align-items: center;
+    flex: 0.4;
 }
 
 #userIcon {
     width: 100px;
     height: 100px;
     border-radius: 50px;
-    background-color: red;
+    border: 1px solid white;
 }
 
-#userInfo {
-    display: flex;
-    position: relative;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    flex: 3;
-}
 
 #bottomBox {
     display: flex;

@@ -25,7 +25,7 @@ const logOut = () => {
     <div class="mainNav">
       <div class="leftSide">
         <RouterLink to="/profile">
-          <img src="../../public/images/userIcon.svg" alt="userProfile" id="user">
+          <img src="../../public/images/person.svg" alt="userProfile" id="user">
         </RouterLink>
         <RouterLink to="/shop">
           <img src="../../public/images/shoppingBagIcon.svg" alt="shop" id="shop">
@@ -91,6 +91,13 @@ nav h1 {
   margin: 10px;
   color: white;
   flex: 1;
+}
+
+#user {
+  display: flex;
+  position: relative;
+  width: 50px;
+  margin: 0px;
 }
 
 #shop {
