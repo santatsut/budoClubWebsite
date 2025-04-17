@@ -102,6 +102,32 @@ app.post('/signUp', async (req, res) => {
     }
   });
 
+  app.post("/getUser"), async (req, res) => {
+    const { gmail } = req.body;  // Extract the email from the query parameters
+    console.log(`Received: ${gmail}`);
+    let connection;
+
+    try {
+      connection = await mysql.createConnection(dbConfig);
+
+      // Fetch the user by email
+      const query = `SELECT * FROM users WHERE gmail = ?`;
+      const [rows] = await connection.execute(query, [gmail]);
+
+      if (rows.length === 0) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      const user = rows[0];
+      res.json({ success: true, user });
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      res.status(500).json({ success: false, message: "Error fetching user" });
+    } finally {
+      if (connection) await connection.end();
+    }
+  }
+
 app.post("/api/swishcb/paymentrequests", async (req, res) => {
   console.log("Swish callback received:", req.body);
 
@@ -127,3 +153,4 @@ app.post("/api/swishcb/paymentrequests", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+

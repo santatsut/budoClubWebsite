@@ -24,7 +24,7 @@ const logOut = () => {
   <nav>
     <div class="mainNav">
       <div class="leftSide">
-        <RouterLink to="/profile">
+        <RouterLink to="/profile" v-if="loggedIn">
           <img src="../../public/images/person.svg" alt="userProfile" id="user">
         </RouterLink>
         <RouterLink to="/shop">
