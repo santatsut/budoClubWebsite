@@ -102,31 +102,40 @@ app.post('/signUp', async (req, res) => {
     }
   });
 
-  app.post("/getUser"), async (req, res) => {
-    const { gmail } = req.body;  // Extract the email from the query parameters
+  app.post("/getUser", async (req, res) => {
+    const { gmail } = req.body;
     console.log(`Received: ${gmail}`);
     let connection;
-
+  
     try {
       connection = await mysql.createConnection(dbConfig);
-
-      // Fetch the user by email
+  
+      // Use parameterized query to prevent SQL injection
       const query = `SELECT * FROM users WHERE gmail = ?`;
       const [rows] = await connection.execute(query, [gmail]);
-
+  
       if (rows.length === 0) {
         return res.status(404).json({ message: "User not found" });
       }
-
+  
       const user = rows[0];
-      res.json({ success: true, user });
+      res.json({
+        success: true,
+        user: {
+          firstName: user.firstName,
+          lastName: user.lastName,
+          // add more fields here if needed
+        }
+      });
+      
     } catch (error) {
       console.error("Error fetching user:", error);
       res.status(500).json({ success: false, message: "Error fetching user" });
     } finally {
       if (connection) await connection.end();
     }
-  }
+  });
+  
 
 app.post("/api/swishcb/paymentrequests", async (req, res) => {
   console.log("Swish callback received:", req.body);
