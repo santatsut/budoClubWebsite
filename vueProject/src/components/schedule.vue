@@ -16,8 +16,6 @@ const daysData = [
   {
     date: 'Tisdag',
     sessions: [
-      { time: '9:00', type: 'karate' },
-      { time: '11:00', type: 'junior träning' },
       { time: '13:00', type: 'vuxen' },
     ],
   },
@@ -33,7 +31,7 @@ const daysData = [
     date: 'Torsdag',
     sessions: [
       { time: '9:00', type: 'karate' },
-      { time: '11:00', type: 'something' },
+
       { time: '13:00', type: 'training' },
     ],
   },
@@ -41,8 +39,7 @@ const daysData = [
     date: 'Fredag',
     sessions: [
       { time: '9:00', type: 'karate' },
-      { time: '11:00', type: 'something' },
-      { time: '13:00', type: 'training' },
+
     ],
   },
   {
@@ -50,7 +47,6 @@ const daysData = [
     sessions: [
       { time: '9:00', type: 'karate' },
       { time: '11:00', type: 'something' },
-      { time: '13:00', type: 'training' },
     ],
   },
   {
@@ -58,6 +54,7 @@ const daysData = [
     sessions: [
       { time: '9:00', type: 'karate' },
       { time: '11:00', type: 'something' },
+      { time: '13:00', type: 'training' },
       { time: '13:00', type: 'training' },
     ],
   },
@@ -69,15 +66,69 @@ const daysData = [
 <template>
   <div class="scheduleInnerBox">
       <h1>Träningsschema</h1>
-      <div class="schedule">
-        <div v-for="(day, index) in daysData" :key="day.date" class="dayBox">
-          <h2>{{ day.date }}</h2>
-          <div class="line"></div>
-          <div v-for="session in day.sessions" :key="session.time" class="sessionBox">
-            <p>{{ session.time }} - {{ session.type || 'No session' }}</p>
-          </div>
-        </div>
-      </div>
+      <section class="schedule">
+  <h2>🥋 Karate Club Weekly Schedule</h2>
+  <div class="scheduleGrid">
+    <div class="day">
+      <h3>Monday</h3>
+      <p><strong>Open:</strong> 16:00–21:00</p>
+      <ul>
+        <li>17:00–18:00: Kids (Beginner)</li>
+        <li>18:15–19:15: Teens (Intermediate)</li>
+        <li>19:30–20:30: Adults (Advanced)</li>
+      </ul>
+    </div>
+    <div class="day">
+      <h3>Tuesday</h3>
+      <p><strong>Open:</strong> 17:00–20:00</p>
+      <ul>
+        <li>17:30–18:30: Kata Focus</li>
+        <li>18:45–19:45: Sparring Practice</li>
+      </ul>
+    </div>
+    <div class="day">
+      <h3>Wednesday</h3>
+      <p><strong>Open:</strong> 16:00–21:00</p>
+      <ul>
+        <li>17:00–18:00: Kids (Beginner)</li>
+        <li>18:15–19:15: Teens (Intermediate)</li>
+        <li>19:30–20:30: Adults (Advanced)</li>
+      </ul>
+    </div>
+    <div class="day">
+      <h3>Thursday</h3>
+      <p><strong>Open:</strong> 17:00–20:00</p>
+      <ul>
+        <li>17:30–18:30: Weapons Class (Bo staff)</li>
+        <li>18:45–19:45: Open Mat</li>
+      </ul>
+    </div>
+    <div class="day">
+      <h3>Friday</h3>
+      <p><strong>Open:</strong> 16:00–19:00</p>
+      <ul>
+        <li>16:30–17:30: Fitness & Conditioning</li>
+        <li>17:45–18:45: Teens & Adults (Mixed)</li>
+      </ul>
+    </div>
+    <div class="day">
+      <h3>Saturday</h3>
+      <p><strong>Open:</strong> 10:00–14:00</p>
+      <ul>
+        <li>10:30–11:30: Kids Fun Class</li>
+        <li>12:00–13:30: Belt Grading Practice</li>
+      </ul>
+    </div>
+    <div class="day" id="sunday">
+      <h3>Sunday</h3>
+      <p><strong>Closed</strong></p>
+      <ul>
+        <li>Rest day 💤</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
     </div>
 </template>
 
@@ -87,46 +138,48 @@ const daysData = [
   position:relative;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
-  background-color: #f2f2f2;
 }
 
-.schedule {
+.scheduleInnerBox h2 {
   display: flex;
-  position:relative;
+  justify-self: center;
+  text-align: center;
+}
+
+.scheduleGrid {
+  display: flex;
   flex-wrap: wrap;
-  height: 80%;
-  width: 90%;
-  background-color: black;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  margin: 25px 25px 50px 25px;
 }
 
-.schedule .line {
-  width: 100%;
-  height: 2px;
-  background-color: black;
-}
-
-.dayBox {
+.day {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  width: 12%;
-  height: 90%;
-  background-color: #fff;
-  border-radius: 10px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px;
+  width: 20%;
+  height: 200px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.sessionBox {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 40%;
-  background-color: #f2f2f2;
-  border-radius: 10px;
-  margin-bottom: 10px;
+@media screen and (max-width: 768px) {
+  .scheduleGrid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .day {
+    width: 90%;
+    margin: 10px auto;
+    padding: 20px 20px 45px 20px;
+  }
+  
 }
 
 </style>

@@ -21,6 +21,7 @@ const logOut = () => {
 </script>
 
 <template>
+
   <nav>
     <div class="mainNav">
       <div class="leftSide">
@@ -43,6 +44,18 @@ const logOut = () => {
       </div>
     </div>
   </nav>
+  <div class="mobileNav">
+    <RouterLink to="/shop">
+        <img src="../../public/images/shoppingBagIcon.svg" alt="shop" id="mobileShop">
+    </RouterLink>
+    <RouterLink to="/">Home</RouterLink>
+    <RouterLink to="/about">About</RouterLink>
+    <RouterLink to="/medlem" v-if="!loggedIn">Login</RouterLink>
+    <RouterLink to="/" @click="logOut" v-if="loggedIn">Logout</RouterLink>
+    <RouterLink to="/shop">
+        <img src="../../public/images/shoppingBagIcon.svg" alt="shop" id="mobileShop">
+    </RouterLink>
+  </div>
 </template>
 
 
@@ -53,12 +66,20 @@ nav {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  
   border-bottom: 2px solid rgb(255, 255, 255);
   background-color: rgb(0, 0, 0);
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 500;
   flex: 1;
+}
+
+.mainNav {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
 }
 
 nav h1 {
@@ -67,7 +88,6 @@ nav h1 {
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 20px;
   letter-spacing: 5px;
-  width: 350px;
 }
 
 .rightSide {
@@ -79,6 +99,23 @@ nav h1 {
   align-items: center;
   margin: 10px;
   flex: 1;
+}
+
+.mobileNav {
+  display: none;
+  position: relative;
+  background-color: black;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0;
+  flex: 1;
+}
+
+.mobileNav a {
+  display: flex;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
 }
 
 .leftSide {
@@ -104,8 +141,17 @@ nav h1 {
   position: relative;
   display: flex;
   width: 50px;
+  height: 50px;
   margin: 0px;
   color: white;
+}
+
+#mobileShop {
+  display: none;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  margin: 0px;
 }
 
 #logo {
@@ -131,17 +177,8 @@ nav h1 {
   justify-content: center;
   text-align: center;
   margin-bottom: 10px;
-  width: 350px;
   color:white;
   flex: 1;
-}
-
-.mainNav {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
 }
 
 nav a {
@@ -156,6 +193,40 @@ nav a:hover {
 
 h3 {
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .rightSide {
+    display: none;
+  }
+
+  .mobileNav {
+    display: flex;
+    position: relative;
+    padding: 10px;
+    border: none;
+  }
+    
+  .mainNav {
+    display: block;
+    width: auto;
+  }
+  nav {
+    margin: 0;
+    border: none;
+  }
+
+  #mobileShop {
+    display: flex;
+    position: relative;
+    width: 50px;
+    margin: 0px;
+  }
+
+  #shop {
+    display: none;
+  }
+
 }
 
 </style>

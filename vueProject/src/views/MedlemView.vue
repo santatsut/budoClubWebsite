@@ -153,6 +153,7 @@ const signUp = () => {
     </form>
     <div id="line"></div>
     <button @click="signUp">registrera dig</button>
+    <button type="submit" v-if="signingUp">Logga in</button>
   </div>
 </template>
 

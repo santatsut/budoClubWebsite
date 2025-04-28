@@ -22,14 +22,6 @@
                     <img src="/images/poster.jpg" alt="nyhets bild">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, corporis.</p>
                 </div>
-                <div class="eventCard">
-                    <img src="/images/karate3.jpg" alt="nyhets bild">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, corporis.</p>
-                </div>
-                <div class="eventCard">
-                    <img src="/images/comp2.jpg" alt="nyhets bild">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, corporis.</p>
-                </div>
             </div>
         </div>
     </div>
@@ -58,7 +50,7 @@
     background-color: rgb(0, 0, 0);
     color: white;
     width: 80%;
-    height: 80%;
+    height: 90%;
     justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;

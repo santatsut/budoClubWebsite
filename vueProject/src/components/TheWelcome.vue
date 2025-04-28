@@ -41,8 +41,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 80%;
 }
-
 
 .medlemButton {
   width: 400px;
@@ -66,6 +66,20 @@
 }
 .medlemButton a:hover {
   text-decoration: none;
+}
+
+@media screen and (max-width: 425px) {
+  .start h1 {
+    font-size: 40px;
+  }
+  .startText {
+    max-width: 90%;
+  }
+  .medlemButton {
+    width: 300px;
+    height: 80px;
+    font-size: 24px;
+  }
 }
 
 </style>

@@ -42,6 +42,7 @@ onMounted(() => {
       memberNumber.value = response.data.user.userID
       group.value = response.data.user.group
       phoneNumber.value = response.data.user.number
+
     })
     .catch((error) => {
       console.error('Error fetching user data', error)
@@ -51,7 +52,7 @@ onMounted(() => {
 
 <template>
   <div class="box" id="topBox">
-    <h1>Profile</h1>
+    <h1>Profil</h1>
     <div class="userBox">
       <div class="profileCard" id="userImg">
           <img :src="profileImgSrc" alt="userProfile" id="userIconImg" />
@@ -68,8 +69,8 @@ onMounted(() => {
           <label for="myFile" class="custom-file-label">Upload Image</label>
           
         <div id="buttons">
-          <button @click="editProfile">Edit Profile</button>
-          <button @click="deleteProfile">Delete Profile</button>
+          <button @click="editProfile">Edit Profil</button>
+          <button @click="deleteProfile">Radera Profil</button>
         </div>
       </div>
 
@@ -239,4 +240,5 @@ onMounted(() => {
   border-radius: 50px;
   border: 1px solid white;
 }
+
 </style>

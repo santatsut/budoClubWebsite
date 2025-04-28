@@ -100,7 +100,7 @@ padding: 10px 20px;
   display: flex;
   position:relative;
   flex-wrap:wrap;
-  justify-content: space-around;
+  justify-content: center;
   margin-top: 20px;
   margin-bottom: 0;
 }
@@ -129,5 +129,12 @@ padding: 10px 20px;
   color: aliceblue;
 }
 
+@media screen and (max-width: 768px) {
+  .priceCard {
+    flex: 1 1 calc(100% - 40px); /* Adjust for margin */
+    margin: 20px;
+  }
+  
+}
 
 </style>
