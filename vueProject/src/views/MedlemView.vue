@@ -110,67 +110,135 @@ const signUp = () => {
       });
   };
 
+const loggingIn = () => {
+    signingUp.value = false;
+    errorMsg.value = '';
+}
+
 </script>
 
 <template>
-  <div class="Inloggning">
-    <h1>Logga in</h1>
-    <form @submit.prevent="handleSubmit">
-        <p v-if="errorMsg" id="errorMsg">{{ errorMsg }}</p>
-        <div v-if="signingUp" class="formSection" id="nameSection">
-            <div id="firstNameSection">
-                <label for="firstName">Förnamn: </label>
-                <input type="text" v-model="firstName" placeholder="förnamn" id="firstName"/>
+    <div id="loginContainer">
+        <div class="leftSideBox">
+        </div>
+    <div class="Inloggning">
+        <div class="tabs">
+            <button @click="loggingIn">Logga in</button>
+            <button @click="signUp">registrera dig</button>
+        </div>
+        <form @submit.prevent="handleSubmit">
+            <p v-if="errorMsg" id="errorMsg">{{ errorMsg }}</p>
+            <div v-if="signingUp" class="formSection" id="nameSection">
+                <div id="firstNameSection">
+                    <label for="firstName">Förnamn: </label>
+                    <input type="text" v-model="firstName" placeholder="förnamn" id="firstName" class="singupInput"/>
+                </div>
+                <div id="lastNameSection">
+                    <label for="lastName">Efternamn: </label>    
+                    <input type="text" v-model="lastName" placeholder="efternamn" id="lastName" class="singupInput"/>
+                </div>
             </div>
-            <div id="lastNameSection">
-                <label for="lastName">Efternamn: </label>    
-                <input type="text" v-model="lastName" placeholder="efternamn" id="lastName"/>
+            <div v-if="signingUp" class="formSectionSigningUp">
+                <label for="number">Nummer: </label>
+                <input type="text" v-model="number" placeholder="123-123-1234" id="number" class="singupInput"/>
             </div>
-        </div>
-        <div v-if="signingUp" class="formSection">
-            <label for="number">Nummer: </label>
-            <input type="text" v-model="number" placeholder="123-123-1234" id="number" />
-        </div>
-        <div class="formSection">
-            <label for="gmail">gmail: </label>
-            <input type="text" v-model="gmail" placeholder="gmail" id="gmail" />
-        </div>
+            <div class="formSection">
+                <label for="gmail">Gmail: </label>
+                <input type="text" v-if="!signingUp" v-model="gmail" placeholder="example@gmail.com" id="gmail" class="loginInput"/>
+                <input type="text" v-if="signingUp" v-model="gmail" placeholder="example@gmail.com" id="gmail" class="singupInput"/>
+            </div>
 
-        <div class="formSection">
-            <label for="password">Password: </label>
-            <input type="password" v-model="password" placeholder="password" id="password"/>
-        </div>
-        
-        <div v-if="signingUp" class="formSection">
-            <label for="password">Password: </label>
-            <input type="password" v-model="passwordRe" placeholder="password" id="passwordRe"/>
-        </div>
-        <div v-if="!signingUp">
-            <a href="#">Glömt lösenord?</a>
-        </div>
-
-        <button type="submit" v-if="!signingUp">Logga in</button>
-    </form>
-    <div id="line"></div>
-    <button @click="signUp">registrera dig</button>
-    <button type="submit" v-if="signingUp">Logga in</button>
-  </div>
+            <div class="formSection">
+                <label for="password">Password: </label>
+                <input type="password" v-if="!signingUp" v-model="password" placeholder="password" id="password" class="loginInput"/>
+                <input type="password" v-if="signingUp" v-model="password" placeholder="password" id="password" class="singupInput"/>
+            </div>
+            
+            <div v-if="signingUp" class="formSection">
+                <label for="password">Password: </label>
+                <input type="password" v-model="passwordRe" placeholder="password" id="passwordRe" class="singupInput"/>
+            </div>
+            <div v-if="!signingUp">
+                <a href="#">Glömt lösenord?</a>
+            </div>
+            <button type="submit" v-if="!signingUp">Logga in</button>
+            <button type="submit" v-if="signingUp">registrera</button>
+        </form>
+    </div>
+    </div>
 </template>
 
 <style>
- .Inloggning {
+.tabs {
+    display: flex;
     position: relative;
-    width: 25%;
-    margin: auto;
-    margin-top: 150px;
-    padding: 20px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.tabs button {
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    width: 100%;
+}
+
+.tabs button:hover {
+    background-color: #c5c5c5;
+    transition: background-color 0.3s ease;
+}
+
+.tabs button:focus {
+    outline: none;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    color: rgb(0, 0, 0);
+}
+
+.leftSideBox {
+    display: flex;
+    position: relative;
+    background-image: url('/images/backgroundImg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: scaleX(-1);
+    height: 100%;
+    flex: 1;
+}
+
+#loginContainer {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    justify-self: center;
+    height: 55vh;
+    background-color: #f2f2f2;
+    margin: 100px 0 100px 0;
+    box-shadow: #484e005b 40px 40px 10px;
+}
+
+ .Inloggning {
+    display: flex;
+    flex-direction: column;
+    position: relative;
     background-color: #f2f2f2;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    margin-bottom: 150px;
+    height: 100%;
+    flex: 1;
  }
 
- .Inloggning button {
+ form button {
     padding: 10px 20px;
     background-color: #c70000;
     color: rgb(255, 255, 255);
@@ -185,11 +253,20 @@ const signUp = () => {
     flex-direction: column;
     justify-content: space-around;
     align-items: space-around;
-    height: 40vh;
+    height: 80%;
+    margin: 25px;
  }
- .Inloggning form input {
-    height: 30px;
+ .loginInput {
+
+    padding: 12px 20px;
+    border: none;
+    border-bottom: black solid 2px;
+    margin: 8px 0;
  }
+
+.loginInput:focus {
+    outline: none;
+}
 
  .formSection {
     display: flex;
@@ -197,10 +274,26 @@ const signUp = () => {
     flex-direction: column;
 
  }
+
+.formSectionSigningUp {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
 #errorMsg {
      color: red;
      text-align: center;
  
+ }
+
+ .singupInput {
+    padding: 6px 12px;
+    border: none;
+    border-bottom: black solid 2px;
+    margin: 8px 0;
  }
 
  #nameSection {
@@ -216,6 +309,14 @@ const signUp = () => {
     position: relative;
     flex-direction: column;
     width: 50%;
+ }
+
+ #number {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    flex:1;
+    width: calc(100% - 20px);
  }
 
 #line {

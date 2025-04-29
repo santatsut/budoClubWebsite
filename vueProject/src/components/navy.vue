@@ -52,8 +52,8 @@ const logOut = () => {
     <RouterLink to="/about">About</RouterLink>
     <RouterLink to="/medlem" v-if="!loggedIn">Login</RouterLink>
     <RouterLink to="/" @click="logOut" v-if="loggedIn">Logout</RouterLink>
-    <RouterLink to="/shop">
-        <img src="../../public/images/shoppingBagIcon.svg" alt="shop" id="mobileShop">
+    <RouterLink to="/profile" v-if="loggedIn">
+          <img src="../../public/images/person.svg" alt="userProfile" id="user">
     </RouterLink>
   </div>
 </template>

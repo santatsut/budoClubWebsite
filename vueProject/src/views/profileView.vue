@@ -92,7 +92,7 @@ onMounted(() => {
       <p class="profileText">Grupp: {{ group }}</p>
       <p class="profileText">Betalnings datum: {{ paymentDate }}</p>
       <p class="profileText">pris: {{ paymentAmount }}</p>
-      <button v-if="!isMedlem">Bli Medlem</button>
+      <button v-if="!isMedlem" >Bli Medlem</button>
     </div>
   </div>
 </template>
