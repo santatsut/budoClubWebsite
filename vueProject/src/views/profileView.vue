@@ -88,12 +88,16 @@ onMounted(() => {
     </div>
 
     <div class="profileCard" id="bottomBox">
-      <p class="profileText">Medlemsnummer: {{ memberNumber }}</p>
-      <p class="profileText">Grupp: {{ group }}</p>
-      <p class="profileText">Betalnings datum: {{ paymentDate }}</p>
-      <p class="profileText">pris: {{ paymentAmount }}</p>
-      <button v-if="!isMedlem" >Bli Medlem</button>
+      <div>
+        <p class="profileText">Medlemsnummer: {{ memberNumber }}</p>
+        <p class="profileText">Grupp: {{ group }}</p>
+      </div>
+      <div>
+        <p class="profileText">Betalnings datum: {{ paymentDate }}</p>
+        <p class="profileText">pris: {{ paymentAmount }}</p>
+      </div>
     </div>
+    <RouterLink to="/prices"><button v-if="!isMedlem" id="bliMedlemButton">Bli Medlem</button></RouterLink>
   </div>
 </template>
 
@@ -140,17 +144,18 @@ onMounted(() => {
   justify-content: space-around;
   align-items: center;
   width: 90%;
-  flex-wrap: wrap;
-  height: 100px;
+  height: 100%;
 }
 
-#bottomBox > * {
+#bottomBox > div {
   display: flex;
   position: relative;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
   font-size: 18px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  flex: 1 1 400px;
-  justify-content: space-around;
 }
 
 .userBox {
@@ -193,7 +198,6 @@ onMounted(() => {
 #userInfo {
   display: flex;
   position: relative;
-  flex: 2;
   font-size: 24px;
 }
 
@@ -231,6 +235,28 @@ onMounted(() => {
   font-size: 16px;
 }
 
+#bliMedlemButton {
+  background-color: #c70000;
+  color: rgb(255, 255, 255);
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+#blieMedlemButton:focus {
+  outline: none;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  color: rgb(0, 0, 0);
+}
+
+#bliMedlemButton:hover {
+  background-color: #ff0000;
+  transition: background-color 0.3s ease;
+}
+
 #userIcon {
   position: absolute;
   background-color: red;
@@ -239,6 +265,41 @@ onMounted(() => {
   height: 100px;
   border-radius: 50px;
   border: 1px solid white;
+}
+
+@media screen and (max-width: 768px) {
+
+  #columnRight div {
+    flex-direction: column;
+    margin: 0;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+}
+
+@media screen and (max-width: 480px) {
+  .userBox {
+    width: auto;
+  }
+  #columnRight div {
+    font-size: 14px;
+  }
+  #userIconImg {
+    width: 80px;
+    height: 80px;
+  }
+  .profileCard {
+    font-size: 10px;
+  }
+  #buttons button {
+    font-size: 12px;
+    padding: 5px;
+  }
+  .custom-file-label {
+    margin-top: 50px;
+  }
 }
 
 </style>

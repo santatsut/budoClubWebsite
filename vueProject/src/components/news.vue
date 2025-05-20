@@ -1,27 +1,45 @@
 <script setup>
+import { Swiper, SwiperSlide } from 'swiper/vue';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-coverflow';
+
+// Import modules
+import { Navigation, Pagination, EffectCoverflow } from 'swiper/modules';
+
+const news = [
+    { newsArticle: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, corporis.", image: "./images/karateBild.jpg" },
+    { newsArticle: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, corporis.", image: "./images/comp.jpg" },
+    { newsArticle: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, corporis.", image: "./images/poster.jpg" },
+    { newsArticle: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, corporis." },
+]
 
 </script>
 
 <template>
     <div class="newsView">
-        <div class="title"> 
+        <div class="title">
             <h1>News</h1>
         </div>
         <div class="line"></div>
         <div id="nyheter">
             <div class="innerBox">
-                <div class="eventCard">
-                    <img src="/images/karateBild.jpg" alt="nyhets bild">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, corporis.</p>
-                </div>
-                <div class="eventCard">
-                    <img src="/images/comp.jpg" alt="nyhets bild">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, corporis.</p>
-                </div>
-                <div class="eventCard">
-                    <img src="/images/poster.jpg" alt="nyhets bild">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, corporis.</p>
-                </div>
+                <swiper :modules="[Navigation, Pagination, EffectCoverflow]" :centeredSlides="true" :navigation="true"
+                    :pagination="{ clickable: true }" effect="coverflow" :coverflowEffect="{
+                        rotate: 50,
+                        stretch: 0,
+                        depth: 100,
+                        modifier: 1,
+                        slideShadows: true
+                    }" :slidesPerView="1" :loop="true" class="swiper-container">
+                    <swiper-slide v-for="(newsArticle, index) in news" :key="index" class="newsCard">
+                        <img :src="newsArticle.image" alt="newsImage" id="newsImage" />
+                        <p>{{ newsArticle.newsArticle }}</p>
+                    </swiper-slide>
+                </swiper>
             </div>
         </div>
     </div>
@@ -34,22 +52,21 @@
 
 .newsView {
     background-color: white;
-    position:relative;
+    position: relative;
 }
 
 #nyheter {
     display: flex;
-  width: inherit;
-  justify-content: center;
-  height: 90vh;
-  position:relative;
+    width: inherit;
+    justify-content: center;
+    height: 50em;
+    position: relative;
 }
 
 .innerBox {
     display: flex;
-    background-color: rgb(0, 0, 0);
+    background-color: #f0f0f0;
     color: white;
-    width: 80%;
     height: 90%;
     justify-content: space-evenly;
     align-items: center;
@@ -58,18 +75,32 @@
     overflow-y: auto;
 }
 
-.eventCard {
-    display: flex;
+.newsCard {
     flex-direction: column;
-    max-width:200px;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0) !important;
+    text-align: center;
+    padding-bottom: 25px;
+    color: black;
+}
+
+#newsImage {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    width: 100%;
+    height: 90%;
+    object-fit: contain;
+    border-radius: 10px;
+    margin: 0 10px 0 10px !important;
 }
 
 #nyheter h1 {
-  text-align: center;
+    text-align: center;
 }
 
 .innerBox img {
-    height:fit-content;
+    height: fit-content;
 }
 
 #nyheter p {
@@ -80,12 +111,10 @@
 
 .title {
     display: flex;
-    position:relative;
+    position: relative;
     justify-content: center;
     align-items: center;
     height: 100px;
     color: rgb(0, 0, 0);
 }
-
-
 </style>

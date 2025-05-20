@@ -7,6 +7,10 @@ import axios from "axios"
 const gmail = ref('');
 const password = ref('');
 const passwordRe = ref('');
+const firstName = ref('');
+const lastName = ref('');
+const number = ref('');
+
 
 const loggedIn = inject('loggedIn');
 
@@ -49,7 +53,6 @@ const checkLogin = async () => {
     
     try {
         const response = await axios.post("http://localhost:5001/checkLogin", userData);
-        console.log("Login response:", response.data);  // Check the response in the console
  
         return response.data.success;  // Expecting { success: true/false }
     } catch (error) {
@@ -85,8 +88,6 @@ const signUp = () => {
         return;
     }
 
-
-    
     const userData = {
         firstName: firstName.value,
         lastName: lastName.value,
@@ -97,7 +98,6 @@ const signUp = () => {
 
     axios.post("http://localhost:5001/signUp", userData)
       .then((response) => {
-        console.log("user added: ", response.data);
         loggedIn.value = true;
         localStorage.setItem('loggedIn', 'true');
         localStorage.setItem('gmail', gmail.value);
@@ -162,7 +162,7 @@ const loggingIn = () => {
                 <a href="#">Glömt lösenord?</a>
             </div>
             <button type="submit" v-if="!signingUp">Logga in</button>
-            <button type="submit" v-if="signingUp">registrera</button>
+            <button type="button" @click="signUp" v-if="signingUp">registrera</button>
         </form>
     </div>
     </div>
@@ -331,5 +331,38 @@ h3 {
     text-align: center;
 }
 
+@media screen and (max-width: 768px) {
+    #loginContainer {
+        flex-direction: column;
+        height: auto;
+        margin: 20px 0;
+    }
+
+    .Inloggning {
+        width: 100%;
+        height: auto;
+    }
+
+    .tabs {
+        flex-direction: column;
+    }
+
+    .tabs button {
+        width: 100%;
+    }
+    
+}
+
+
+@media screen and (max-width: 425px) {
+    #nameSection {
+        flex-direction: column;
+    }
+
+    #firstNameSection, #lastNameSection {
+        width: 100%;
+    }
+    
+}
 
 </style>

@@ -42,7 +42,7 @@ const karateForms = [
         :loop="true"
         :breakpoints="{
           0: { slidesPerView: 1, spaceBetween: 10 },
-          768: { slidesPerView: 3, spaceBetween: 50 }
+          769: { slidesPerView: 3, spaceBetween: 50 }
         }"
         class="swiper-container"
       >

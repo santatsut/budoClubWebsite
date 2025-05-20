@@ -133,11 +133,22 @@ const daysData = [
 </template>
 
 <style>
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding-bottom: 100px;
+}
+
 .scheduleInnerBox {
   display: flex;
   position:relative;
   flex-direction: column;
   align-items: center;
+  height: 100vh;
 }
 
 .scheduleInnerBox h2 {
@@ -162,7 +173,7 @@ const daysData = [
   background-color: #f0f0f0;
   border-radius: 8px;
   padding: 20px;
-  margin: 10px;
+  margin: 20px;
   width: 20%;
   height: 200px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -170,14 +181,19 @@ const daysData = [
 
 @media screen and (max-width: 768px) {
   .scheduleGrid {
-    flex-direction: column;
-    align-items: center;
+    max-height: 35em;
+    overflow-y: scroll;
+    padding: none;
   }
 
   .day {
-    width: 90%;
-    margin: 10px auto;
-    padding: 20px 20px 45px 20px;
+    font-size: 12px;
+    text-decoration: none;
+    width: 100%;
+    height: 30%;
+  }
+  .day li {
+    list-style: none;
   }
   
 }
