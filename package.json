@@ -5,5 +5,8 @@
     "ncrypt-js": "^2.1.2",
     "swiper": "^11.2.6",
     "vueperslides": "^3.6.0"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
